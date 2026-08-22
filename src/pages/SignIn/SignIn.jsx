@@ -2,12 +2,19 @@ import React, { use } from 'react';
 import { AuthContext } from '../../contexts/AuthContext/AuthContext';
 import lottieSignIn from '../../assets/lotties/Login and Sign up.json'
 import * as LottieModule from "lottie-react";
+import SocialLogIn from '../Shared/SocialLogIn';
+import { useLocation, useNavigate } from 'react-router';
 
 const Lottie = LottieModule.default?.default || LottieModule.default;
 
 const SignIn = () => {
 
-     const{createUser} = use(AuthContext)
+     const{signInUser} = use(AuthContext)
+     const location = useLocation();
+     const navigate = useNavigate();
+     const from = location.state || '/';
+
+     console.log('location in sign in page', location)
 
     const handleSignIn = e =>{
     e.preventDefault();
@@ -16,14 +23,18 @@ const SignIn = () => {
     const password = form.password.value;
     console.log(email, password);
 
-    //create user 
-    createUser(email,password)
+    //sign in user 
+    signInUser(email, password)
     .then(result =>{
       console.log(result.user);
+      navigate(from);
+
     })
     .catch(error =>{
-      console.log(error)
+      console.log(error);
     })
+
+ 
   }
 
     return (
@@ -36,7 +47,7 @@ const SignIn = () => {
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <div className="card-body">
-            <h1 className="text-5xl font-bold">Sign In</h1>
+            <h1 className="text-5xl font-bold">Sign In Now</h1>
             <form onSubmit={handleSignIn}>
               <fieldset className="fieldset">
                 <label className="label">Email</label>
@@ -47,6 +58,7 @@ const SignIn = () => {
                 <button className="btn btn-neutral mt-4">Sign In</button>
               </fieldset>
             </form>
+            <SocialLogIn from={from}></SocialLogIn>
           </div>
         </div>
       </div>
