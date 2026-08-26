@@ -8,7 +8,7 @@ const JobsCard = ({ job }) => {
         salaryRange, description, company, company_logo } = job;
 
     return (
-        <div className="card bg-base-100 w-96 shadow-sm">
+        <div className="card bg-base-100 w-full max-w-96 mx-auto shadow-sm">
             <div className="flex gap-2">
 
                 <figure>

@@ -57,7 +57,7 @@ const ApplyJob = () => {
 
     return (
         <div className="flex flex-col items-center px-4 sm:px-6 pb-10">
-            <h3 className="text-4xl py-6">Apply for this job:<Link to={`/jobs/${jobId}`}>Details</Link></h3>
+            <h3 className=" text-2xl md:text-4xl py-6 text-center">Apply for this job:<Link to={`/jobs/${jobId}`}>Details</Link></h3>
 
             <form onSubmit={handleApplyFormSubmit}>
                 <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
